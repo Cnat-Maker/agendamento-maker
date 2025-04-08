@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendar Serviço</title>
+</head>
+
+<body class="bg-light">
+    <form method="POST">
+        {% csrf_token %}
+    
+        <!-- Selecionar o Serviço -->
+        <label for="servico">Serviço:</label>
+        <select id="servico" name="servico" required>
+            <option value="" disabled selected>Escolha um serviço</option>
+            {% for servico in servicos %}
+                <option value="{{ servico.id }}">{{ servico.nome }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+    
+        <!-- Selecionar a Data -->
+        <label for="data_final">Data:</label>
+        <input type="date" id="data_final" name="data_final" required>
+        <br><br>
+    
+        <button type="submit">Agendar</button>
+    </form>
+    
+</body>
+</html>
